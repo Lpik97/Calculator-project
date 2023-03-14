@@ -1,4 +1,79 @@
 h1 {
+    display: flex;
+    justify-content: center;
+}
+
+.calculator-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     margin: auto;
-    text-align: center;
+    height: 500px;
+    width: 400px;
+    gap: 10px;
+    border: 1px solid black;
+}
+
+.display {
+    margin: 15px 0 5px 0;
+    height: 50px;
+    width: 350px;
+    align-self: center;
+    border: 1px solid black;
+}
+
+.functionality-buttons {
+    display: flex;
+    width: 350px;
+    height: 50px;
+    gap: 5px;
+}
+
+.backspace-button {
+    flex-basis: 50%;
+}
+
+.clear-button {
+    flex-basis: 50%;
+}
+
+.buttons-container {
+    display: flex;
+    flex: auto;
+    width: 350px;
+    gap: 15px;
+    margin: 5px 0 5px 0;
+}
+
+.number-buttons {
+   display: grid;
+   flex-basis: 75%;
+   grid-template-columns: repeat(3, 1fr);
+   grid-template-rows: repeat(3, 1fr);
+   column-gap: 5px;
+   row-gap: 5px;
+}
+
+.operator-buttons {
+    display: grid;
+    flex-basis: 25%;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(5, 1fr);
+    row-gap: 5px;
+    position: relative;
+}
+
+.operator-equal {
+    position: absolute;
+    height: 120px;
+    width: 100%;
+    bottom: -70px;
+}
+
+.number-0 {
+    align-self: flex-start;
+    height: 50px;
+    width: 250.25px;
+    margin: 5px 0 15px 25px;
 }
