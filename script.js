@@ -1,7 +1,9 @@
-const add = document.querySelector('#add');
-const subtract = document.querySelector('#subtract');
-const multiply = document.querySelector('#multiply');
-const divide = document.querySelector('#divide');
+const addButton = document.querySelector('.operator-add');
+const subtractButton = document.querySelector('.operator-subtract');
+const multiplyButton = document.querySelector('.operator-multiply');
+const divideButton = document.querySelector('.operator-divide');
+const allNumberButtons = document.querySelectorAll('.number');
+const displayedNumber = document.querySelector('.displayed-number');
 
 
 function addNumbers (...args) {
@@ -52,3 +54,14 @@ function operateNumbers (operator, ...args) {
     }
     return result;
 }
+
+function populateDisplay () {
+    allNumberButtons.forEach(function (button) {
+        button.addEventListener('click', function () {
+            const buttonValue = button.textContent;
+            displayedNumber.textContent += buttonValue;
+        });
+    });
+}
+
+populateDisplay();
