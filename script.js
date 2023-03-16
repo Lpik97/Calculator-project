@@ -5,7 +5,7 @@ const divideButton = document.querySelector('#operator-divide');
 const allNumberButtons = document.querySelectorAll('.number');
 const displayedNumber = document.querySelector('.displayed-number');
 const displayedMemory = document.querySelector('.displayed-memory');
-const allOperatorButtons = document.querySelectorAll('.operator');
+const allOperatorButtons = document.querySelectorAll('.operator'); //Comment add to re-commit this file.
 
 
 function addNumbers (...args) {
