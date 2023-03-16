@@ -11,7 +11,8 @@
     <h1>Calculator</h1>
     <div class="calculator-container">
         <div class="display">
-            <div class="displayed-number">0</div>
+            <div class="displayed-memory"></div>
+            <div class="displayed-number"></div>
         </div>
         <div class="functionality-buttons">
             <button class="clear-button">AC</button>
@@ -28,16 +29,16 @@
                 <button class="number">1</button>
                 <button class="number">2</button>
                 <button class="number">3</button>
+                <button class="number" id="number-0">0</button>
             </div>
             <div class="operator-buttons">
-                <button class="operator-divide">/</button>
-                <button class="operator-multiply">*</button>
-                <button class="operator-subtract">-</button>
-                <button class="operator-add">+</button>
-                <button class="operator-equal">=</button>
+                <button class="operator" id="operator-divide">/</button>
+                <button class="operator" id="opeator-multiply">*</button>
+                <button class="operator" id="opeator-subtract">-</button>
+                <button class="operator" id="operator-add">+</button>
+                <button class="operator" id="operator-equal">=</button>
             </div>
         </div>
-        <button class="number-0">0</button>
     </div>
     <script src="script.js"></script>
 </body>
