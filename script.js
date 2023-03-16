@@ -1,9 +1,11 @@
-const addButton = document.querySelector('.operator-add');
-const subtractButton = document.querySelector('.operator-subtract');
-const multiplyButton = document.querySelector('.operator-multiply');
-const divideButton = document.querySelector('.operator-divide');
+const addButton = document.querySelector('#operator-add');
+const subtractButton = document.querySelector('#operator-subtract');
+const multiplyButton = document.querySelector('#operator-multiply');
+const divideButton = document.querySelector('#operator-divide');
 const allNumberButtons = document.querySelectorAll('.number');
 const displayedNumber = document.querySelector('.displayed-number');
+const displayedMemory = document.querySelector('.displayed-memory');
+const allOperatorButtons = document.querySelectorAll('.operator');
 
 
 function addNumbers (...args) {
@@ -34,20 +36,20 @@ function divideNumbers (...args) {
     return result;
 }
 
-function operateNumbers (operator, ...args) {
+function operateNumbers (operator, num1, num2) {
     let result;
     switch (operator) {
         case "+":
-            result = addNumbers(...args);
+            result = addNumbers(num1, num2);
             break;
         case "-":
-            result = subtractNumbers(...args);
+            result = subtractNumbers(num1, num2);
             break;
         case "*":
-            result = multiplyNumbers(...args);
+            result = multiplyNumbers(num1, num2);
             break;
         case "/":
-            result = divideNumbers(...args);
+            result = divideNumbers(num1, num2);
             break;
         default:
             console.log("Invalid operator");
@@ -65,3 +67,16 @@ function populateDisplay () {
 }
 
 populateDisplay();
+
+function populateDisplayMemory () {
+    allOperatorButtons.forEach(function (button) {
+        button.addEventListener('click', function () {
+            const buttonValue = button.textContent;
+            displayedMemory.textContent = displayedNumber.textContent + ' ' +  buttonValue;
+            displayedNumber.textContent = '';
+        });
+    });
+}
+
+populateDisplayMemory();
+
