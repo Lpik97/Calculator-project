@@ -3,15 +3,17 @@ const subtractButton = document.querySelector('#operator-subtract');
 const multiplyButton = document.querySelector('#operator-multiply');
 const divideButton = document.querySelector('#operator-divide');
 const allNumberButtons = document.querySelectorAll('.number');
-const displayedNumber = document.querySelector('.displayed-number');
-const displayedMemory = document.querySelector('.displayed-memory');
-const allOperatorButtons = document.querySelectorAll('.operator'); //Comment add to re-commit this file.
+let displayedNumber = document.querySelector('.displayed-number');
+let displayedMemory = document.querySelector('.displayed-memory');
+const allOperatorButtons = document.querySelectorAll('.operator');
+const equalButton = document.querySelector('#operator-equal');
+let operator = null;
 
 
 function addNumbers (...args) {
     let result = args.reduce(function(accumulator, currentValue) {
         return accumulator + currentValue;
-    }, 0);
+    });
     return result;
 }
 
@@ -68,15 +70,32 @@ function populateDisplay () {
 
 populateDisplay();
 
-function populateDisplayMemory () {
+function performOperations () {
+    numbers = [];
+    result = 0;
     allOperatorButtons.forEach(function (button) {
         button.addEventListener('click', function () {
-            const buttonValue = button.textContent;
-            displayedMemory.textContent = displayedNumber.textContent + ' ' +  buttonValue;
-            displayedNumber.textContent = '';
+            if (operator === null) {
+                operator = button.textContent;
+                numbers.push(Number(displayedNumber.textContent));
+                displayedNumber.textContent = '';
+                displayedMemory.textContent = numbers[0] + ' ' + operator;
+            } else {
+                numbers.push(Number(displayedNumber.textContent));
+                result = operateNumbers(operator, numbers[0], numbers[1]);
+                displayedMemory.textContent = numbers[0] + ' ' + operator + ' ' + numbers[1] + ' ' + '=';
+                displayedNumber.textContent = result.toFixed(3); //This method should round the decimals to max 3.
+                numbers = [result];
+                if (result !== 0) {
+                    numbers = [result];
+            
+                }
+                operator = button.textContent;
+                displayedNumber.textContent = '';
+                displayedMemory.textContent = numbers[0] + ' ' + operator;
+            }
         });
     });
 }
 
-populateDisplayMemory();
-
+performOperations();
