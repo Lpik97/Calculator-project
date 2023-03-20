@@ -28,11 +28,19 @@ h1 {
 }
 
 .displayed-memory {
+    display: flex;
+    justify-content: flex-end;
     margin: 0 15px 0 0;
+    height: 20px;
+    width: 60px;
 }
 
 .displayed-number {
+    display: flex;
+    justify-content: flex-end;
     margin: 0 15px 0 0;
+    height: 20px;
+    width: 60px;
 }
 
 .functionality-buttons {
