@@ -11,6 +11,11 @@ equalButton.addEventListener('click', function () {
         operateNumbers();
     }
 });
+const clearButton = document.querySelector('.clear-button');
+clearButton.addEventListener('click', clearAll);
+
+const backSpaceButton = document.querySelector('.backspace-button');
+backSpaceButton.addEventListener('click', undo);
 
 function operateNumbers () {
     currentNumber = Number(currentNumber);
@@ -23,6 +28,13 @@ function operateNumbers () {
         } else if (operator === '*') {
             result = previousNumber * currentNumber;
         } else if (operator === '/') {
+            if (currentNumber <= 0) {
+                displayedMemory.textContent = '';
+                displayedNumber.textContent = 'Error';
+                previousNumber = '';
+                currentNumber = 0;
+                return;
+            }
             result = previousNumber / currentNumber;
         }
     displayedMemory.textContent = previousNumber + ' ' + operator + ' ' + currentNumber + ' ' + '=';
@@ -50,7 +62,7 @@ function populateDisplayedMemory () {
                 let buttonValue = button.textContent;
                 operator = buttonValue;
                 previousNumber = currentNumber;
-                displayedMemory.textContent = previousNumber + ' ' +  operator;
+                displayedMemory.textContent = roundNumber(previousNumber) + ' ' +  operator;
                 currentNumber = '';
                 displayedNumber.textContent = '';
             }
@@ -62,3 +74,21 @@ populateDisplayedMemory();
 function roundNumber (num) {
     return Math.round(num * 1000000) / 1000000;
 }
+
+function clearAll () {
+    currentNumber = '';
+    previousNumber = '';
+    operator = '';
+    displayedNumber.textContent = '';
+    displayedMemory.textContent = '';
+}
+
+function undo () {
+    console.log(currentNumber);
+    if (currentNumber.length > 0) {
+        currentNumber = currentNumber.slice(0, -1);
+        displayedNumber.textContent = currentNumber;
+        displayedMemory.textContent = '';
+    }
+}   
+
