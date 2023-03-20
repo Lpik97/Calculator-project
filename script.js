@@ -1,101 +1,64 @@
-const addButton = document.querySelector('#operator-add');
-const subtractButton = document.querySelector('#operator-subtract');
-const multiplyButton = document.querySelector('#operator-multiply');
-const divideButton = document.querySelector('#operator-divide');
+let currentNumber = '';
+let previousNumber = '';
+let operator = '';
 const allNumberButtons = document.querySelectorAll('.number');
+const allOperatorButtons = document.querySelectorAll('.operator');
 let displayedNumber = document.querySelector('.displayed-number');
 let displayedMemory = document.querySelector('.displayed-memory');
-const allOperatorButtons = document.querySelectorAll('.operator');
-const equalButton = document.querySelector('#operator-equal');
-let operator = null;
-
-
-function addNumbers (...args) {
-    let result = args.reduce(function(accumulator, currentValue) {
-        return accumulator + currentValue;
-    });
-    return result;
-}
-
-function subtractNumbers (...args) {
-    let result = args.reduce(function(accumulator, currentValue) {
-        return accumulator - currentValue;
-    });
-    return result;
-}
-
-function multiplyNumbers (...args) {
-    let result = args.reduce(function(accumulator, currentValue) {
-        return accumulator * currentValue;
-    }, 1);
-    return result;
-}
-
-function divideNumbers (...args) {
-    let result = args.reduce(function(accumulator, currentValue) {
-        return accumulator / currentValue;
-    });
-    return result;
-}
-
-function operateNumbers (operator, num1, num2) {
-    let result;
-    switch (operator) {
-        case "+":
-            result = addNumbers(num1, num2);
-            break;
-        case "-":
-            result = subtractNumbers(num1, num2);
-            break;
-        case "*":
-            result = multiplyNumbers(num1, num2);
-            break;
-        case "/":
-            result = divideNumbers(num1, num2);
-            break;
-        default:
-            console.log("Invalid operator");
+const equalButton = document.querySelector('.special-operator');
+equalButton.addEventListener('click', function () {
+    if (currentNumber !== '' && previousNumber !== '') {
+        operateNumbers();
     }
-    return result;
+});
+
+function operateNumbers () {
+    currentNumber = Number(currentNumber);
+    previousNumber = Number(previousNumber);
+    let result = 0;
+        if (operator === '+') {
+            result = previousNumber + currentNumber;
+        } else if (operator === '-') {
+            result = previousNumber - currentNumber;
+        } else if (operator === '*') {
+            result = previousNumber * currentNumber;
+        } else if (operator === '/') {
+            result = previousNumber / currentNumber;
+        }
+    displayedMemory.textContent = previousNumber + ' ' + operator + ' ' + currentNumber + ' ' + '=';
+    previousNumber = '';
+    currentNumber = result;
+    displayedNumber.textContent = roundNumber(result);
 }
 
-function populateDisplay () {
+function populateDisplayedNumber () {
     allNumberButtons.forEach(function (button) {
         button.addEventListener('click', function () {
-            const buttonValue = button.textContent;
-            displayedNumber.textContent += buttonValue;
+            let buttonValue = button.textContent;
+            currentNumber += buttonValue;
+            displayedNumber.textContent = currentNumber;
         });
     });
 }
 
-populateDisplay();
+populateDisplayedNumber();
 
-function performOperations () {
-    numbers = [];
-    result = 0;
+function populateDisplayedMemory () {
     allOperatorButtons.forEach(function (button) {
         button.addEventListener('click', function () {
-            if (operator === null) {
-                operator = button.textContent;
-                numbers.push(Number(displayedNumber.textContent));
+            if (currentNumber !== '') {
+                let buttonValue = button.textContent;
+                operator = buttonValue;
+                previousNumber = currentNumber;
+                displayedMemory.textContent = previousNumber + ' ' +  operator;
+                currentNumber = '';
                 displayedNumber.textContent = '';
-                displayedMemory.textContent = numbers[0] + ' ' + operator;
-            } else {
-                numbers.push(Number(displayedNumber.textContent));
-                result = operateNumbers(operator, numbers[0], numbers[1]);
-                displayedMemory.textContent = numbers[0] + ' ' + operator + ' ' + numbers[1] + ' ' + '=';
-                displayedNumber.textContent = result.toFixed(3); //This method should round the decimals to max 3.
-                numbers = [result];
-                if (result !== 0) {
-                    numbers = [result];
-            
-                }
-                operator = button.textContent;
-                displayedNumber.textContent = '';
-                displayedMemory.textContent = numbers[0] + ' ' + operator;
             }
         });
     });
 }
+populateDisplayedMemory();
 
-performOperations();
+function roundNumber (num) {
+    return Math.round(num * 1000000) / 1000000;
+}
