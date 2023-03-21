@@ -13,7 +13,7 @@ h1 {
     height: 525px;
     width: 400px;
     gap: 10px;
-    border: 1px groove rgb(52, 53, 53);
+    border: 6px groove rgb(128, 129, 129);
     border-radius: 25px;
     background-color: rgb(62, 64, 63, 1);
 }
@@ -72,20 +72,24 @@ h1 {
 .displayed-memory {
     display: flex;
     justify-content: flex-end;
-    margin: 0 15px 0 0;
-    height: 20px;
-    width: 60px;
-    font: 20px bold;
-    color: black;
+    align-items: center;
+    flex-basis: 25%;
+    margin: 0 15px 0 15px;
+    width: 320px;
+    font: 17px bold;
+    color: rgb(87, 87, 87);
 }
 
 .displayed-number {
     display: flex;
     justify-content: flex-end;
-    margin: 0 15px 0 0;
-    height: 20px;
-    width: 60px;
-    font: 20px bold;
+    align-items: center;
+    flex-wrap: wrap;
+    flex-basis: 75%;
+    margin: 0 15px 0 15px;
+    height: 40px;
+    width: 320px;
+    font: 40px bold;
     color: black;
 }
 
@@ -100,14 +104,14 @@ h1 {
     align-items: center;
     justify-content: center;
     flex-basis: 50%;
-    font-size: 50px;
-    border: 2px outset ;
+    font-size: 30px;
+    border: 2px outset;
     border-radius: 5px;
 }
 
 .backspace-button:active {
     box-shadow: none; 
-    transform: translateY(1px); 
+    transform: translateY(3px); 
     filter: drop-shadow(2px 2px #2c2c2c); 
 }
 
@@ -123,7 +127,7 @@ h1 {
 
 .clear-button:active {
     box-shadow: none; 
-    transform: translateY(1px); 
+    transform: translateY(3px); 
     filter: drop-shadow(2px 2px #2c2c2c); 
 }
 
@@ -157,31 +161,33 @@ h1 {
     background-color: rgb(139, 125, 122, 1);
     font-size: 40px;
     color: white;
-    border: 2px outset rgb(139, 125, 122, 1);
+    border: 2px outset rgb(73, 71, 71);
     border-radius: 5px;
 }
 
 .number:active {
     box-shadow: none; 
-    transform: translateY(1px); 
-    filter: drop-shadow(2px 2px #2c2c2c); 
+    transform: translateY(3px); 
+    filter: drop-shadow(2px 2px #2c2c2c);
+    box-shadow: 2px 2px inset #000000;
 }
 
 .operator {
     background-color: rgb(40, 40, 40, 1);
     font-size: 30px;
     color: white;
-    border: 2px outset rgb(40, 40, 40, 1);
+    border: 2px outset rgb(77, 70, 69);
     border-radius: 5px;
 }
 
 .operator:active {
     box-shadow: none; 
-    transform: translateY(1px); 
-    filter: drop-shadow(2px 2px #2c2c2c); 
+    transform: translateY(3px); 
+    filter: drop-shadow(2px 2px #2c2c2c);
+    box-shadow: 2px 2px inset #000000;
 }
 
-.special-operator {
+.equal-operator {
     position: absolute;
     width: 78px;
     height: 50px;
@@ -193,21 +199,28 @@ h1 {
     border-radius: 5px;
 }
 
-.special-operator:active {
+.equal-operator:active {
     box-shadow: none; 
-    transform: translateY(1px); 
-    filter: drop-shadow(2px 2px #2c2c2c); 
+    transform: translateY(3px); 
+    filter: drop-shadow(2px 2px #2c2c2c);
+    box-shadow: 2px 2px inset #000000;
 }
 
 #operator-add {
-    align-self: self-start;
     height: 200%;
 }
 
 #number-0 {
     align-self: self-end;
-    height: 50px;
+    height: 100%;
     width: 208%;
-    border: 2px outset rgb(139, 125, 122, 1);
+    border: 2px outset rgb(73, 71, 71);
     border-radius: 5px;
+}
+
+#number-0:active {
+    box-shadow: none; 
+    transform: translateY(3px); 
+    filter: drop-shadow(2px 2px #2c2c2c);
+    box-shadow: 2px 2px inset #000000;
 }
