@@ -9,10 +9,50 @@ h1 {
     justify-content: center;
     align-items: center;
     margin: auto;
-    height: 500px;
+    padding: 20px 0 10px 0;
+    height: 525px;
     width: 400px;
     gap: 10px;
-    border: 1px solid black;
+    border: 1px groove rgb(52, 53, 53);
+    border-radius: 25px;
+    background-color: rgb(62, 64, 63, 1);
+}
+
+.calculator-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 5px 0 5px;
+    width: 350px;
+    height: 50px;
+}
+
+.top-name {
+    font: 20px bolder;
+    color: white;
+}
+
+.top-solar-panel {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 1fr;
+    column-gap: 5px;
+    background-color: rgb(71, 49, 41, 1);
+    border: 1px inset rgb(45, 45, 45);
+    width: 150px;
+    height: 50px;
+}
+
+.top-text {
+    font: 20px bolder;
+    color: white;
+}
+
+
+.display-border {
+    border: 5px inset rgb(107, 108, 108);
+    border-radius: 10px;
+
 }
 
 .display {
@@ -20,11 +60,13 @@ h1 {
     flex-direction: column;
     justify-content: flex-end;
     align-items: flex-end;
-    margin: 15px 0 5px 0;
-    height: 50px;
+    height: 75px;
     width: 350px;
     align-self: center;
-    border: 1px solid black;
+    border: 1px inset black;
+    background-color: rgb(183, 198, 171, 1);
+    font-size: large;
+    color: white;
 }
 
 .displayed-memory {
@@ -33,6 +75,8 @@ h1 {
     margin: 0 15px 0 0;
     height: 20px;
     width: 60px;
+    font: 20px bold;
+    color: black;
 }
 
 .displayed-number {
@@ -41,6 +85,8 @@ h1 {
     margin: 0 15px 0 0;
     height: 20px;
     width: 60px;
+    font: 20px bold;
+    color: black;
 }
 
 .functionality-buttons {
@@ -51,11 +97,34 @@ h1 {
 }
 
 .backspace-button {
+    align-items: center;
+    justify-content: center;
     flex-basis: 50%;
+    font-size: 50px;
+    border: 2px outset ;
+    border-radius: 5px;
+}
+
+.backspace-button:active {
+    box-shadow: none; 
+    transform: translateY(1px); 
+    filter: drop-shadow(2px 2px #2c2c2c); 
 }
 
 .clear-button {
+    align-content: center;
     flex-basis: 50%;
+    background-color: rgb(241, 114, 43, 1);
+    font-size: 30px;
+    color: white;
+    border: 2px outset rgb(241, 114, 43, 1);
+    border-radius: 5px;
+}
+
+.clear-button:active {
+    box-shadow: none; 
+    transform: translateY(1px); 
+    filter: drop-shadow(2px 2px #2c2c2c); 
 }
 
 .buttons-container {
@@ -81,15 +150,64 @@ h1 {
     grid-template-columns: 1fr;
     grid-template-rows: repeat(5, 1fr);
     row-gap: 5px;
+    
 }
 
-/*Here I want to make the operator equal button twice the size of its sibling divs.*/ 
-.operator-equal { 
-    
+.number {
+    background-color: rgb(139, 125, 122, 1);
+    font-size: 40px;
+    color: white;
+    border: 2px outset rgb(139, 125, 122, 1);
+    border-radius: 5px;
+}
+
+.number:active {
+    box-shadow: none; 
+    transform: translateY(1px); 
+    filter: drop-shadow(2px 2px #2c2c2c); 
+}
+
+.operator {
+    background-color: rgb(40, 40, 40, 1);
+    font-size: 30px;
+    color: white;
+    border: 2px outset rgb(40, 40, 40, 1);
+    border-radius: 5px;
+}
+
+.operator:active {
+    box-shadow: none; 
+    transform: translateY(1px); 
+    filter: drop-shadow(2px 2px #2c2c2c); 
+}
+
+.special-operator {
+    position: absolute;
+    width: 78px;
+    height: 50px;
+    margin: 247px 0px 0px 172px;
+    background-color: rgb(40, 40, 40, 1);
+    font-size: 30px;
+    color: white;
+    border: 2px outset rgb(40, 40, 40, 1);
+    border-radius: 5px;
+}
+
+.special-operator:active {
+    box-shadow: none; 
+    transform: translateY(1px); 
+    filter: drop-shadow(2px 2px #2c2c2c); 
+}
+
+#operator-add {
+    align-self: self-start;
+    height: 200%;
 }
 
 #number-0 {
     align-self: self-end;
     height: 50px;
-    width: 315%;
+    width: 208%;
+    border: 2px outset rgb(139, 125, 122, 1);
+    border-radius: 5px;
 }
