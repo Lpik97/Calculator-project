@@ -17,6 +17,9 @@ clearButton.addEventListener('click', clearAll);
 const backSpaceButton = document.querySelector('.backspace-button');
 backSpaceButton.addEventListener('click', undo);
 
+const decimalButton = document.querySelector('.decimal');
+decimalButton.addEventListener('click', addDecimal);
+
 function operateNumbers () {
     currentNumber = Number(currentNumber);
     previousNumber = Number(previousNumber);
@@ -63,7 +66,7 @@ function populateDisplayedMemory () {
                 let buttonValue = button.textContent;
                 operator = buttonValue;
                 previousNumber = currentNumber;
-                previousNumber = previousNumber.substring(0,16);
+                previousNumber = previousNumber,
                 displayedMemory.textContent = roundNumber(previousNumber) + ' ' +  operator;
                 currentNumber = '';
                 displayedNumber.textContent = '';
@@ -94,5 +97,10 @@ function undo () {
         displayedNumber.textContent = currentNumber;
         displayedMemory.textContent = '';
     }
-}   
+}
+
+function addDecimal () {
+        currentNumber = currentNumber + '.';
+        displayedNumber.textContent = currentNumber;
+}
 
