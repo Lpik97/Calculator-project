@@ -5,7 +5,7 @@ const allNumberButtons = document.querySelectorAll('.number');
 const allOperatorButtons = document.querySelectorAll('.operator');
 let displayedNumber = document.querySelector('.displayed-number');
 let displayedMemory = document.querySelector('.displayed-memory');
-const equalButton = document.querySelector('.special-operator');
+const equalButton = document.querySelector('.equal-operator');
 equalButton.addEventListener('click', function () {
     if (currentNumber !== '' && previousNumber !== '') {
         operateNumbers();
@@ -48,6 +48,7 @@ function populateDisplayedNumber () {
         button.addEventListener('click', function () {
             let buttonValue = button.textContent;
             currentNumber += buttonValue;
+            currentNumber = currentNumber.substring(0, 16);
             displayedNumber.textContent = currentNumber;
         });
     });
@@ -62,6 +63,7 @@ function populateDisplayedMemory () {
                 let buttonValue = button.textContent;
                 operator = buttonValue;
                 previousNumber = currentNumber;
+                previousNumber = previousNumber.substring(0,16);
                 displayedMemory.textContent = roundNumber(previousNumber) + ' ' +  operator;
                 currentNumber = '';
                 displayedNumber.textContent = '';
@@ -72,6 +74,8 @@ function populateDisplayedMemory () {
 populateDisplayedMemory();
 
 function roundNumber (num) {
+    num = String(num);
+    num = num.substring(0,16);
     return Math.round(num * 1000000) / 1000000;
 }
 
