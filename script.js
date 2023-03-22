@@ -100,7 +100,9 @@ function undo () {
 }
 
 function addDecimal () {
-        currentNumber = currentNumber + '.';
+    if (!currentNumber.includes('.')) {
+        currentNumber += '.';
         displayedNumber.textContent = currentNumber;
+    }
 }
 
