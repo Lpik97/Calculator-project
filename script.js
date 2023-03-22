@@ -5,17 +5,21 @@ const allNumberButtons = document.querySelectorAll('.number');
 const allOperatorButtons = document.querySelectorAll('.operator');
 let displayedNumber = document.querySelector('.displayed-number');
 let displayedMemory = document.querySelector('.displayed-memory');
-const equalButton = document.querySelector('.equal-operator');
+
+window.addEventListener('keydown', keyboardSupport);
+
+const equalButton = document.querySelector('.operator-equal');
 equalButton.addEventListener('click', function () {
     if (currentNumber !== '' && previousNumber !== '') {
         operateNumbers();
     }
 });
-const clearButton = document.querySelector('.clear-button');
-clearButton.addEventListener('click', clearAll);
 
-const backSpaceButton = document.querySelector('.backspace-button');
-backSpaceButton.addEventListener('click', undo);
+const clearAllButton = document.querySelector('.clearAll-button');
+clearAllButton.addEventListener('click', clearAll);
+
+const clearButton = document.querySelector('.clear-button');
+clearButton.addEventListener('click', undo);
 
 const decimalButton = document.querySelector('.decimal');
 decimalButton.addEventListener('click', addDecimal);
@@ -91,11 +95,9 @@ function clearAll () {
 }
 
 function undo () {
-    console.log(currentNumber);
     if (currentNumber.length > 0) {
         currentNumber = currentNumber.slice(0, -1);
         displayedNumber.textContent = currentNumber;
-        displayedMemory.textContent = '';
     }
 }
 
@@ -106,3 +108,30 @@ function addDecimal () {
     }
 }
 
+function keyboardSupport (e) {
+   e.preventDefault();
+   if (e.key >= 0 && e.key <= 9) {
+        currentNumber += e.key;
+        currentNumber = currentNumber.substring(0, 16);
+        displayedNumber.textContent = currentNumber;
+   } else if (currentNumber !== '' && previousNumber !== '' && e.key === 'Enter' || e.key === '=') {
+        operateNumbers();
+   } else if (e.key === '+' || e.key === '-' || e.key === '/' || e.key === '*') {
+        if (currentNumber !== '') {
+        operator = e.key;
+        previousNumber = currentNumber;
+        previousNumber = previousNumber,
+        displayedMemory.textContent = roundNumber(previousNumber) + ' ' +  operator;
+        currentNumber = '';
+        displayedNumber.textContent = '';
+        }
+   } else if (e.key === '.') {
+        addDecimal();
+   } else if (e.key === 'Backspace') {
+        if (currentNumber != '') {
+            undo();
+        } else if (currentNumber != '' && previousNumber != '') {
+            clearAll();
+        }
+   }
+}
