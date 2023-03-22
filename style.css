@@ -3,6 +3,11 @@
     src: url(./digital-7/digital-7.ttf);
 }
 
+@font-face {
+    font-family: "Michroma";
+    src: url(./Michroma/Michroma-Regular.ttf);
+}
+
 h1 {
     display: flex;
     justify-content: center;
@@ -34,6 +39,7 @@ h1 {
 
 .top-name {
     font: 20px bolder;
+    font-family: "Michroma";
     color: white;
 }
 
@@ -164,7 +170,7 @@ h1 {
 .number {
     font-size: 40px;
     color: white;
-    border: 2px outset rgb(40, 40, 40, 1);
+    border: 2px outset rgb(70, 68, 68);
     border-radius: 5px;
     background-color: rgb(139, 125, 122, 1);
 }
